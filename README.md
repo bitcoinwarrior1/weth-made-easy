@@ -1,2 +1,2 @@
-# eth-allowance
-Find all the address which can spend your crypto! 
+# weth-made-easy
+wrap & unwrap your eth the easy way!
