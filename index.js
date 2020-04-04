@@ -17,6 +17,7 @@ $(() => {
     });
 
     function init(address) {
+        $("#yourAddress").text(address);
         web3.eth.getChainId().then((chainId) => {
             return chainId;
         }).then((chainId) => {
@@ -30,11 +31,11 @@ $(() => {
     }
 
     function setOnClickActions(address, contract) {
-        $("#wrapButton").onclick(function() {
+        $("#wrapButton").click(() => {
             let amount = web3.utils.toWei($("#wrapAmount").val());
             triggerWrap(amount, address, contract);
         });
-        $("#unWrapButton").onclick(function() {
+        $("#unWrapButton").click(() => {
             let amount = web3.utils.toWei($("#unwrapAmount").val());
             triggerUnWrap(amount, address, contract);
         });
@@ -62,7 +63,7 @@ $(() => {
     }
 
     function triggerWrap(amount, address, contract) {
-        contract.methods.deposit().send({ from: address, value: web3.utils.toWei(amount) }).then((receipt) => {
+        contract.methods.deposit().send({ from: address, value: amount }).then((receipt) => {
             alert("success: " + JSON.stringify(receipt));
         }).catch((err) => {
             alert("failed: " + JSON.stringify(err));
@@ -70,7 +71,7 @@ $(() => {
     }
 
     function triggerUnWrap(amount, address, contract) {
-        contract.methods.withdraw(web3.utils.toWei(amount)).send({ from: address }).then((receipt) => {
+        contract.methods.withdraw(amount).send({ from: address }).then((receipt) => {
             alert("success: " + JSON.stringify(receipt));
         }).catch((err) => {
             alert("failed: " + JSON.stringify(err));
@@ -83,16 +84,16 @@ $(() => {
     }
 
     function setWethBalance(address, contract) {
-        contract.methods.balanceOf(address).call().then(function(balance) {
-            $("#yourEthBalance").val(balance / 1e18 + "WETH");
+        contract.methods.balanceOf(address).call().then((balance) => {
+            $("#yourWethBalance").text((balance / 1e18).toFixed(5) + " WETH");
         }).catch(function (err) {
             alert(err);
         })
     }
 
     function setEthBalance(address) {
-        web3.eth.getBalance(address).then(function(balance) {
-            $("#yourEthBalance").val(balance / 1e18 + "ETH");
+        web3.eth.getBalance(address).then((balance) => {
+            $("#yourEthBalance").text((balance / 1e18).toFixed(5) + " ETH");
         }).catch(function(err) {
             alert(err);
         });
