@@ -63,7 +63,7 @@ $(() => {
     }
 
     function triggerWrap(amount, address, contract) {
-        contract.methods.mint().send({ from: address, value: web3.utils.toWei(amount) }).then((receipt) => {
+        contract.methods.deposit().send({ from: address, value: web3.utils.toWei(amount) }).then((receipt) => {
             alert("success: " + JSON.stringify(receipt));
         }).catch((err) => {
             alert("failed: " + JSON.stringify(err));
@@ -71,7 +71,7 @@ $(() => {
     }
 
     function triggerUnWrap(amount, address, contract) {
-        contract.methods.redeem().send(web3.utils.toWei(amount), { from: address }).then((receipt) => {
+        contract.methods.withdraw(web3.utils.toWei(amount)).send({ from: address }).then((receipt) => {
             alert("success: " + JSON.stringify(receipt));
         }).catch((err) => {
             alert("failed: " + JSON.stringify(err));
@@ -84,7 +84,7 @@ $(() => {
     }
 
     function setWethBalance(address, contract) {
-        contract.methods.balanceOf().send(address).then(function(balance) {
+        contract.methods.balanceOf(address).call().then(function(balance) {
             $("#yourEthBalance").val(balance / 1e18 + "WETH");
         }).catch(function (err) {
             alert(err);
@@ -128,8 +128,6 @@ $(() => {
                 return "";
         }
     }
-
-
 
 });
 
