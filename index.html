@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <title>WETH made easy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/628px-Ethereum_logo_2014.svg.png">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./bundle.js"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <div id="titles">
+        <h1>WETH made easy</h1>
+        <h2>Wrap and un-wrap your ether here!</h2>
+    </div>
+</div>
+<div id="panel">
+    <h1>Your details</h1>
+    <div class="yourInfo">
+        <h3 id="yourAddress">ETH Address</h3>
+        <h3 id="yourEthBalance">ETH balance</h3>
+        <h3 id="yourWethBalance">WETH balance</h3>
+        <br>
+    </div>
+    <div class="wrap">
+        <input id="wrapAmount" type="number" placeholder="Amount in ETH"/>
+        <br>
+        <br>
+        <button id="wrapButton" class="btn btn-danger">Wrap</button>
+    </div>
+    <br>
+    <div class="unwrap">
+        <input id="unwrapAmount" type="number" placeholder="Amount in WETH"/>
+        <br>
+        <br>
+        <button id="unWrapButton" class="btn btn-primary">Un-Wrap</button>
+    </div>
+</div>
+</body>
+</html>
